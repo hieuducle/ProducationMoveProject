@@ -1,4 +1,4 @@
-const Course = require('../models/Course')
+const Course = require('../models/Product')
 const { mongooseToObject } = require('../../util/mongoose');
 class CourseController {
 
@@ -9,42 +9,43 @@ class CourseController {
 
     show(req, res, next) {
         Course.findOne({ slug: req.params.slug })
-            .then((course) => {
-                res.render('courses/show', { course: mongooseToObject(course) });
+            .then((product_lines) => {
+                res.render('product_lines/show', { product_lines: mongooseToObject(product_lines) });
             })
             .catch(next);
     }
 
 
     create(req, res, next) {
-        res.render('courses/create');
+        res.render('product_lines/create');
     }
 
     store(req, res, next) {
         // res.json(req.body);
         const formData = req.body;
-        const course = new Course(formData);
-        course.save();
-
-        res.send('saved');
+        const product_lines = new Course(formData);
+        product_lines.save();
+        res.send('saved-courses');
+        res.redirect('/me/stored/product_lines');
+        // res.render('/me/stored/product_lines');
+        // .catch(next);
 
     }
 
     edit(req, res, next) {
         Course.findById(req.params.id)
-            .then(course => res.render('courses/edit', {
-                course: mongooseToObject(course)
+            .then(product_lines => res.render('product_lines/edit', {
+                product_lines: mongooseToObject(product_lines)
             }))
             .catch(next)
-        
     }
 
     update(req, res, next) {
         // res.json(req.body);
+
         Course.updateOne({ _id: req.params.id}, req.body)
-            .then(() => res.redirect('/me/stored/courses'))
+            .then(() => res.redirect('/me/stored/product_lines'))
             .catch(next);
-        
     }
 
     destroy(req,res,next) {

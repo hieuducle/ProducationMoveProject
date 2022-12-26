@@ -4,7 +4,8 @@ const router = express.Router();
 
 const meController = require('../app/controllers/MeController');
 
-router.get('/stored/courses', meController.storedCourses);
+router.get('/stored/product_lines', meController.storedCourses);
+router.get('/stored/customers', meController.storedCustomers);
 
 
 

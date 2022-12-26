@@ -1,14 +1,14 @@
 <div class="div mt-4">
     <div class="row">
-        {{#each courses}}
+        {{#each product_lines}}
         <div class="col-sm-6 col-lg-4">
             <div class="card card-course-item" >
-                <a href="/courses/{{this.slug}}">
+                <a href="/product_lines/{{this.slug}}">
                 <img class="card-img-top" src="{{this.image}}" alt="{{this.name}}">
                 </a>
             
             <div class="card-body">
-                <a href="/courses/{{this.name}}">
+                <a href="/product_lines/{{this.name}}">
                 <h5 class="card-title">{{this.name}}</h5>
                 </a>
                 
